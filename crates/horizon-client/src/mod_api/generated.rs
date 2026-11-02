@@ -4515,7 +4515,7 @@ pub trait Hooks: Send + Sync {
     /// A player is about to nock `bow` with `hand` (`BowItem.use`, NeoForge's
     /// `ArrowNockEvent`): `has_ammo` is whether `getProjectile` found ammunition
     /// or the player is in creative. Set `cancel` to fail the use.
-    /// @API:arrow_nock@.
+    /// 375.
     ///
     /// Return `Flow::Cancel` to take it: this sets `cancel`, and later mods are skipped.
     fn arrow_nock(&self, host: &mut dyn Host, event: &mut ArrowNockEvent<'_>) -> Flow {
@@ -4524,7 +4524,7 @@ pub trait Hooks: Send + Sync {
         Flow::Continue
     }
     /// Player FOV scale, after vanilla effects and before zoom and easing.
-    /// Invalid values or values outside 0.01..=10 revert to base. API @API:compute_fov_modifier@.
+    /// Invalid values or values outside 0.01..=10 revert to base. API 362.
     fn compute_fov_modifier(&self, host: &dyn Host, event: &mut ComputeFovModifierEvent<'_>) {
         let _ = host;
         let _ = event;
@@ -4535,7 +4535,7 @@ pub trait Hooks: Send + Sync {
     /// what is added to the entity's velocity; a player's client is sent the
     /// same. Wind bursts too, except dragons and end crystals. End crystals
     /// are also omitted from ordinary blasts: Horizon removes them without a
-    /// velocity to change. Server-side. @API:explosion_knockback@.
+    /// velocity to change. Server-side. 374.
     ///
     /// Every mod gets `event.knockback_velocity` in order and may add, change or remove knockback_velocity.
     fn explosion_knockback(&self, host: &mut dyn Host, event: &mut ExplosionKnockbackEvent<'_>) {
@@ -4547,7 +4547,7 @@ pub trait Hooks: Send + Sync {
     /// stack being matched, `accept` already true (the load-time list named
     /// the item). Set `accept` to false to refuse the stack — its components
     /// are the usual reason. The hook may be called many times a craft; the
-    /// answer must be the same for the same stack. API @API:ingredient_test@.
+    /// answer must be the same for the same stack. API 377.
     fn ingredient_test(&self, event: &mut IngredientTestEvent<'_>) {
         let _ = event;
     }
@@ -4559,7 +4559,7 @@ pub trait Hooks: Send + Sync {
     /// `native_item_container_insert`, `native_item_container_extract`, in
     /// `native_item_container.rs`). The contents are kept in the stack's
     /// `minecraft:container`, as a shulker box item keeps them.
-    /// API @API:item_container@.
+    /// API 370.
     ///
     /// Return `Some` to set `slots`; the first mod returning `Some` wins.
     fn item_container(&self, host: &dyn Host, event: &mut ItemContainerEvent<'_>) -> Option<u32> {
@@ -4572,7 +4572,7 @@ pub trait Hooks: Send + Sync {
     /// mob (`entity`, `kind`): a skeleton or illusioner's shot, or the crossbow
     /// load of a pillager or piglin. `projectile` is the vanilla
     /// ammunition; replace it to choose another. A replaced stack is not taken
-    /// from the inventory. @API:living_get_projectile@.
+    /// from the inventory. 376.
     ///
     /// Every mod gets `event.projectile` in order and may add, change or remove projectile.
     fn living_get_projectile(&self, host: &mut dyn Host, event: &mut LivingGetProjectileEvent<'_>) {
@@ -4594,7 +4594,7 @@ pub trait Hooks: Send + Sync {
     }
     /// Additional first-person hand and item pose, including empty arms and maps.
     /// Add offsets in blocks and pitch, yaw and roll in degrees; multiply scale.
-    /// API @API:render_hand_pose@.
+    /// API 369.
     fn render_hand_pose(&self, host: &dyn Host, event: &mut RenderHandPoseEvent<'_>) {
         let _ = host;
         let _ = event;
@@ -4611,7 +4611,7 @@ pub trait Hooks: Send + Sync {
         let _ = event;
         Flow::Continue
     }
-    /// Name tag visibility and optional replacement text. API @API:render_name_tag@.
+    /// Name tag visibility and optional replacement text. API 372.
     fn render_name_tag(&self, host: &dyn Host, event: &mut RenderNameTagEvent<'_>) {
         let _ = host;
         let _ = event;
